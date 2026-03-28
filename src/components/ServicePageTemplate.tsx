@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { ApexEmergencyServiceStitch } from "@/components/apex/ApexEmergencyServiceStitch";
 import { CallToActionPanel } from "@/components/CallToActionPanel";
 import { FaqList } from "@/components/FaqList";
 import { MiniLeadForm } from "@/components/MiniLeadForm";
-import { ResponseTimeline } from "@/components/ResponseTimeline";
 import { SchemaScript } from "@/components/SchemaScript";
 import { Section } from "@/components/Section";
 import { TrustBadgeRow } from "@/components/TrustBadgeRow";
@@ -155,6 +155,10 @@ function faqSchema(service: Service) {
 }
 
 export function ServicePageTemplate({ service }: { service: Service }) {
+  if (service.key === "emergency-plumber") {
+    return <ApexEmergencyServiceStitch service={service} />;
+  }
+
   const relatedServices = service.relatedServices
     .map((key) => getServiceByKey(key))
     .filter((entry): entry is Service => Boolean(entry));
@@ -166,10 +170,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       entry.service.toLowerCase().includes(service.shortTitle.toLowerCase()) ||
       entry.service.toLowerCase().includes(service.key.split("-")[0])
   );
-  const processTitle =
-    service.key === "emergency-plumber"
-      ? "How our emergency plumbing works"
-      : `How our ${service.shortTitle.toLowerCase()} service works`;
+  const processTitle = `How our ${service.shortTitle.toLowerCase()} service works`;
   const recentJobs = recentJobsByService[service.key];
   const nearbyServices = services.filter((entry) => entry.key !== service.key).slice(0, 4);
   const internalServiceLinks = Array.from(
@@ -280,43 +281,6 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           ))}
         </div>
       </Section>
-
-      {service.key === "emergency-plumber" ? (
-        <Section
-          eyebrow="Fast Response"
-          title="How fast we respond to emergency plumbing calls in London"
-          subtitle="This is the high-intent trust section most emergency customers look for before calling."
-          className="bg-fog"
-        >
-          <ResponseTimeline
-            steps={[
-              {
-                title: "Call and triage",
-                detail: "We confirm issue type, postcode, and urgency immediately.",
-                eta: "0-2 min"
-              },
-              {
-                title: "Dispatch confirmed",
-                detail: "Nearest available engineer is assigned and route checked live.",
-                eta: "5-10 min"
-              },
-              {
-                title: "On-site arrival",
-                detail: "Typical arrival in under 60 minutes for central coverage zones.",
-                eta: "Under 60 min"
-              }
-            ]}
-          />
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={`tel:${company.phoneRaw}`} className="btn-primary">
-              Call Emergency Line
-            </Link>
-            <Link href="/contact" className="btn-secondary">
-              Get Free Quote
-            </Link>
-          </div>
-        </Section>
-      ) : null}
 
       <Section
         eyebrow="Pricing"

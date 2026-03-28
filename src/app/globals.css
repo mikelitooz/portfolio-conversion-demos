@@ -50,10 +50,10 @@ main {
   }
 
   .nl-btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30;
+    @apply inline-flex items-center justify-center rounded-lg bg-ink px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30;
   }
 
   .nl-btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-ink px-6 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30;
+    @apply inline-flex items-center justify-center rounded-lg border border-ink px-7 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30;
   }
 }

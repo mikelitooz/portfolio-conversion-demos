@@ -21,12 +21,12 @@ export function StickyAddToCart({ title, price }: { title: string; price: string
         show ? "translate-y-0" : "translate-y-full"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3">
+      <div className="mx-auto flex w-full max-w-[560px] items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#111827] p-3">
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-[#111827]">{title}</p>
-          <p className="text-xs text-slate-500">{price}</p>
+          <p className="truncate text-[10px] font-bold uppercase tracking-[0.15em] text-slate-300">{title}</p>
+          <p className="text-sm font-semibold text-white">{price}</p>
         </div>
-        <a href="#buy-box" className="rounded-full bg-[#111827] px-5 py-3 text-sm font-semibold text-white">
+        <a href="#buy-box" className="rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#111827]">
           Add to Cart
         </a>
       </div>

@@ -29,33 +29,30 @@ const footerCols = [
 
 export function StoreFooter() {
   return (
-    <footer id="footer" className="border-t border-slate-200 bg-[#fafafa]">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div>
-          <h3 className="font-display text-xl font-semibold text-[#111827]">Northline Desk</h3>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Premium accessories for UK professionals, creators, and remote teams who want a cleaner, faster desk setup.
+    <footer id="footer" className="border-t border-zinc-200 bg-zinc-50">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-10 px-8 py-20 md:flex-row">
+        <div className="text-center md:text-left">
+          <p className="font-display text-xl font-semibold text-zinc-900">Northline Desk</p>
+          <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+            Copyright {new Date().getFullYear()} Northline Desk. London, UK.
           </p>
         </div>
-        {footerCols.map((column) => (
-          <div key={column.title}>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">{column.title}</h4>
-            <ul className="mt-3 space-y-2">
-              {column.links.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-semibold text-slate-700 transition hover:text-[#111827]">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div className="border-t border-slate-200">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>Copyright {new Date().getFullYear()} Northline Desk. All rights reserved.</p>
-          <p>Built for conversion-focused ecommerce demos.</p>
+
+        <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          {footerCols.flatMap((column) => column.links).slice(0, 4).map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 transition hover:text-[#111827]"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-6">
+          <span className="text-xs font-semibold text-slate-400">IG</span>
+          <span className="text-xs font-semibold text-slate-400">X</span>
         </div>
       </div>
     </footer>
