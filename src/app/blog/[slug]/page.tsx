@@ -51,14 +51,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       <Section
-        eyebrow="Article Template"
-        title="Demo blog article structure"
-        subtitle="This template is designed to support both ranking and conversion by blending practical advice with internal linking."
+        eyebrow="Practical Guide"
+        title="What to check and when to call an engineer"
+        subtitle="Simple, practical advice from our London team to help you act quickly and safely."
       >
         <article className="prose prose-slate max-w-none">
           <p>
-            This demo article template uses a clear heading structure, concise paragraphs, and contextual links to relevant
-            service pages and contact actions. Replace this with final editorial content while keeping the structural logic.
+            Use this guide to understand the issue, carry out safe checks, and decide when professional help is the best
+            next step.
           </p>
           <h3>Why this topic matters</h3>
           <p>
@@ -78,13 +78,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/services/emergency-plumber-london"
-            className="rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+            className="btn-secondary cta-interactive"
           >
             Emergency Service Page
           </Link>
           <Link
             href="/contact"
-            className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a28]"
+            className="btn-primary cta-interactive"
           >
             Request Quote
           </Link>

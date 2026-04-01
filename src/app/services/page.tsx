@@ -30,7 +30,7 @@ export default function ServicesPage() {
       <Section
         eyebrow="Core Services"
         title="Find the right service quickly"
-        subtitle="Each page is built for clear decision-making with trust proof, FAQs, and direct call-to-action."
+        subtitle="Choose the service that matches your issue, then book quickly with clear pricing and response details."
       >
         <ServiceCards items={services} />
       </Section>
@@ -49,13 +49,13 @@ export default function ServicesPage() {
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="inline-flex rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a28]"
+              className="btn-primary cta-interactive"
             >
               Request Quote
             </Link>
             <Link
               href="/faq"
-              className="inline-flex rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+              className="btn-secondary cta-interactive"
             >
               View FAQs
             </Link>

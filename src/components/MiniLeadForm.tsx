@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function MiniLeadForm({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`surface-card p-5 ${compact ? "" : "md:p-6"}`}>
+    <div className={`surface-card p-5 ${compact ? "" : "md:p-6"}`} data-reveal>
       <h3 className="font-display text-xl font-semibold text-ink">Get a Free Quote in Minutes</h3>
       <p className="mt-2 text-sm text-steel">We usually respond within 10 minutes during service hours.</p>
       <form className="mt-4 space-y-3" action="/thank-you">
@@ -71,7 +71,7 @@ export function MiniLeadForm({ compact = false }: { compact?: boolean }) {
         </label>
         <button
           type="submit"
-          className="btn-primary w-full"
+          className="btn-primary cta-interactive w-full"
         >
           Get a Free Quote
         </button>

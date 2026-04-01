@@ -32,13 +32,18 @@ export function ResponseTimeline({
   steps?: TimelineStep[];
 }) {
   return (
-    <div className="surface-card p-6 md:p-8">
+    <div className="surface-card p-6 md:p-8" data-reveal>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint">Power Section</p>
       <h3 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-steel">{subtitle}</p>
       <ol className="mt-6 grid gap-4 md:grid-cols-3">
         {steps.map((step, index) => (
-          <li key={step.title} className="rounded-2xl border border-slate-200 bg-white p-5">
+          <li
+            key={step.title}
+            className="card-interactive rounded-2xl border border-slate-200 bg-white p-5"
+            data-reveal
+            data-reveal-delay={index * 120}
+          >
             <p className="text-xs font-semibold uppercase tracking-wider text-mint">Step {index + 1}</p>
             <p className="mt-2 text-base font-semibold text-ink">{step.title}</p>
             <p className="mt-2 text-sm leading-relaxed text-steel">{step.detail}</p>

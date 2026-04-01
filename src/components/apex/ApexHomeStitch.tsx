@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CountUp } from "@/components/CountUp";
 import { company } from "@/lib/content";
 
 const serviceCards = [
@@ -72,7 +73,7 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
     <>
       <section className="bg-[#141b2b] bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:18px_18px] px-4 py-14 text-white sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <div data-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4fd1c5]">London Emergency Plumbing Team</p>
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
               Emergency Plumber London - 24/7 Fast Response in Under 60 Minutes
@@ -82,20 +83,23 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
               service and transparent pricing.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href={`tel:${company.phoneRaw}`} className="inline-flex items-center justify-center rounded-full bg-[#ff9f1c] px-7 py-4 text-base font-semibold text-[#2c1700] transition hover:brightness-95">
+              <Link href={`tel:${company.phoneRaw}`} className="cta-interactive inline-flex items-center justify-center rounded-full bg-[#ff9f1c] px-7 py-4 text-base font-semibold text-[#2c1700] transition hover:brightness-95">
                 Call Now - Immediate Response
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/35 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10">
+              <Link href="/contact" className="cta-interactive inline-flex items-center justify-center rounded-full border border-white/35 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10">
                 Get a Free Quote
               </Link>
             </div>
             <ul className="mt-8 grid gap-3 text-sm text-slate-100">
               {[
-                "4.9 star rated by 500+ London customers",
+                <>
+                  <CountUp end={4.9} decimals={1} className="font-semibold" /> star rated by{" "}
+                  <CountUp end={500} suffix="+" className="font-semibold" /> London customers
+                </>,
                 "Gas Safe Registered Engineers",
                 "No Hidden Fees - Fixed Pricing"
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2">
+              ].map((item, index) => (
+                <li key={typeof item === "string" ? item : `stat-${index}`} className="flex items-center gap-2">
                   <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#ff9f1c] text-[11px] font-bold text-[#2c1700]">
                     +
                   </span>
@@ -105,7 +109,7 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-slate-300/25 bg-white p-7 text-[#141b2b] shadow-2xl">
+          <div className="rounded-3xl border border-slate-300/25 bg-white p-7 text-[#141b2b] shadow-2xl" data-reveal data-reveal-delay="120">
             <h2 className="font-display text-3xl font-semibold tracking-tight">Need an Engineer Now?</h2>
             <p className="mt-2 text-sm text-slate-600">We usually respond within 10 minutes during service hours.</p>
             <form className="mt-6 space-y-4">
@@ -146,7 +150,7 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
                 <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Problem Details</span>
                 <textarea className="h-24 w-full resize-none rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30" placeholder="Briefly describe the issue." />
               </label>
-              <button type="submit" className="w-full rounded-2xl bg-[#ff6b35] px-6 py-3.5 text-base font-semibold text-white transition hover:brightness-95">
+              <button type="submit" className="cta-interactive w-full rounded-2xl bg-[#ff6b35] px-6 py-3.5 text-base font-semibold text-white transition hover:brightness-95">
                 Get Help in 60 Minutes
               </button>
             </form>
@@ -160,9 +164,22 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
             ["4.9 Rated", "by 500+ London customers"],
             ["Gas Safe Registered", "Qualified engineers"],
             ["No Hidden Fees", "Fixed pricing guarantee"]
-          ].map(([title, subtitle]) => (
-            <article key={title} className="rounded-2xl bg-white p-5 shadow-soft">
-              <p className="font-display text-2xl font-semibold text-[#141b2b]">{title}</p>
+          ].map(([title, subtitle], index) => (
+            <article
+              key={title}
+              className="card-interactive rounded-2xl bg-white p-5 shadow-soft"
+              data-reveal
+              data-reveal-delay={index * 120}
+            >
+              <p className="font-display text-2xl font-semibold text-[#141b2b]">
+                {index === 0 ? (
+                  <>
+                    <CountUp end={4.9} decimals={1} /> Rated
+                  </>
+                ) : (
+                  title
+                )}
+              </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{subtitle}</p>
             </article>
           ))}
@@ -171,13 +188,20 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
 
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6b35]">Expertise and Solutions</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6b35]" data-reveal>
+            Expertise and Solutions
+          </p>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-[#141b2b] md:text-5xl">
             Comprehensive London Plumbing
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-12">
-            {serviceCards.map((card) => (
-              <article key={card.title} className={`rounded-[2rem] p-8 shadow-soft ${card.style}`}>
+            {serviceCards.map((card, index) => (
+              <article
+                key={card.title}
+                className={`card-interactive rounded-[2rem] p-8 shadow-soft ${card.style}`}
+                data-reveal
+                data-reveal-delay={index * 120}
+              >
                 <h3 className="font-display text-3xl font-semibold tracking-tight">{card.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">{card.summary}</p>
                 <Link href={card.href} className="mt-7 inline-flex text-sm font-semibold text-[#ff6b35] hover:text-[#141b2b]">
@@ -191,20 +215,35 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
 
       <section className="bg-[#141b2b] px-4 py-20 text-white sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
-          <h2 className="text-center font-display text-4xl font-semibold tracking-tight md:text-5xl">How We Respond</h2>
+          <h2 className="text-center font-display text-4xl font-semibold tracking-tight md:text-5xl" data-reveal>
+            How We Respond
+          </h2>
           <p className="mt-3 text-center text-sm uppercase tracking-[0.16em] text-slate-400">Call - Dispatch - Arrival</p>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {[
               ["1", "Call", "Speak to dispatch in seconds and confirm postcode and urgency."],
               ["2", "Dispatch", "Nearest certified engineer is assigned and routed immediately."],
               ["3", "Arrival", "On-site response target under 60 minutes for urgent London callouts."]
-            ].map(([step, title, detail]) => (
-              <article key={title} className="rounded-2xl border border-slate-700 bg-[#1b2438] p-8 text-center">
+            ].map(([step, title, detail], index) => (
+              <article
+                key={title}
+                className="card-interactive rounded-2xl border border-slate-700 bg-[#1b2438] p-8 text-center"
+                data-reveal
+                data-reveal-delay={index * 120}
+              >
                 <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#ff9f1c] text-2xl font-bold text-[#2c1700]">
                   {step}
                 </span>
                 <h3 className="mt-6 font-display text-3xl font-semibold">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">{detail}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                  {index === 2 ? (
+                    <>
+                      On-site response target under <CountUp end={60} suffix=" minutes" /> for urgent London callouts.
+                    </>
+                  ) : (
+                    detail
+                  )}
+                </p>
               </article>
             ))}
           </div>
@@ -231,12 +270,14 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
             ].map(([title, price, detail], index) => (
               <article
                 key={title}
-                className={`rounded-2xl border p-6 ${index === 2 ? "border-[#ff9f1c] bg-[#fff4e8]" : "border-slate-200 bg-white"}`}
+                className={`card-interactive rounded-2xl border p-6 ${index === 2 ? "border-[#ff9f1c] bg-[#fff4e8]" : "border-slate-200 bg-white"}`}
+                data-reveal
+                data-reveal-delay={index * 120}
               >
                 <h3 className="font-display text-2xl font-semibold tracking-tight text-[#141b2b]">{title}</h3>
                 <p className="mt-3 text-3xl font-semibold text-[#141b2b]">{price}</p>
                 <p className="mt-4 text-sm text-slate-600">{detail}</p>
-                <Link href="/contact" className="mt-6 inline-flex rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-[#141b2b] transition hover:border-[#ff9f1c] hover:text-[#ff6b35]">
+                <Link href="/contact" className="cta-interactive mt-6 inline-flex rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-[#141b2b] transition hover:border-[#ff9f1c] hover:text-[#ff6b35]">
                   Book This
                 </Link>
               </article>
@@ -254,7 +295,7 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
               className="h-full w-full object-cover"
             />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/90 px-5 py-3 text-sm font-semibold text-[#141b2b] shadow-lg">
-              14 engineers active now
+              <CountUp end={14} /> engineers active now
             </div>
           </div>
           <div>
@@ -263,8 +304,14 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
               Our distributed engineer network covers key boroughs and nearby areas for fast same-day response.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              {londonAreas.map((area) => (
-                <Link key={area} href="/areas" className="rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#141b2b] shadow-soft transition hover:text-[#ff6b35]">
+              {londonAreas.map((area, index) => (
+                <Link
+                  key={area}
+                  href="/areas"
+                  className="card-interactive rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#141b2b] shadow-soft transition hover:text-[#ff6b35]"
+                  data-reveal
+                  data-reveal-delay={index * 90}
+                >
                   {area}
                 </Link>
               ))}
@@ -280,8 +327,13 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-[#141b2b] md:text-5xl">What Londoners Say</h2>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonialCards.map((card) => (
-              <article key={card.name} className="rounded-3xl bg-[#f6f8ff] p-7 shadow-soft">
+            {testimonialCards.map((card, index) => (
+              <article
+                key={card.name}
+                className="card-interactive rounded-3xl bg-[#f6f8ff] p-7 shadow-soft"
+                data-reveal
+                data-reveal-delay={index * 120}
+              >
                 <p className="text-sm leading-relaxed text-slate-700">&quot;{card.quote}&quot;</p>
                 <p className="mt-6 text-sm font-semibold text-[#141b2b]">{card.name}</p>
                 <p className="text-xs uppercase tracking-[0.14em] text-slate-500">{card.area}</p>
@@ -296,7 +348,13 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
           <h2 className="text-center font-display text-4xl font-semibold tracking-tight text-[#141b2b]">Common Questions</h2>
           <div className="mt-10 space-y-4">
             {faqs.slice(0, 3).map((faq, index) => (
-              <details key={faq.question} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft" open={index === 0}>
+              <details
+                key={faq.question}
+                className="card-interactive rounded-2xl border border-slate-200 bg-white p-6 shadow-soft"
+                open={index === 0}
+                data-reveal
+                data-reveal-delay={index * 120}
+              >
                 <summary className="cursor-pointer list-none text-lg font-semibold text-[#141b2b]">{faq.question}</summary>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{faq.answer}</p>
               </details>
@@ -312,10 +370,10 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
             Do not wait for damage to get worse. Our engineers are on standby across London.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href={`tel:${company.phoneRaw}`} className="inline-flex items-center justify-center rounded-full bg-[#141b2b] px-9 py-4 text-xl font-semibold text-white transition hover:bg-[#0f1421]">
+            <Link href={`tel:${company.phoneRaw}`} className="cta-interactive inline-flex items-center justify-center rounded-full bg-[#141b2b] px-9 py-4 text-xl font-semibold text-white transition hover:bg-[#0f1421]">
               Call {company.phoneDisplay}
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/15 px-9 py-4 text-xl font-semibold text-white transition hover:bg-white/25">
+            <Link href="/contact" className="cta-interactive inline-flex items-center justify-center rounded-full border border-white/40 bg-white/15 px-9 py-4 text-xl font-semibold text-white transition hover:bg-white/25">
               Request Quote Online
             </Link>
           </div>

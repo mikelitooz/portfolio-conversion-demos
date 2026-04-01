@@ -6,6 +6,7 @@ import { EmergencyBar } from "@/components/EmergencyBar";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ScrollRevealManager } from "@/components/ScrollRevealManager";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 
 export function ChromeGate({ children }: { children: ReactNode }) {
@@ -23,6 +24,7 @@ export function ChromeGate({ children }: { children: ReactNode }) {
       <main>{children}</main>
       <Footer />
       <StickyMobileCta />
+      <ScrollRevealManager />
       <ExitIntentPopup />
     </>
   );

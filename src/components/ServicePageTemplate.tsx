@@ -193,7 +193,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <section className="bg-ink bg-hero-grid bg-[size:18px_18px] text-white">
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint">London service page</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint">24/7 London plumbing team</p>
             <h1 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-5xl">{service.title}</h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-200">{service.heroSubheadline}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -270,11 +270,11 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <Section
         eyebrow="Process"
         title={processTitle}
-        subtitle="A conversion-focused flow built to reduce uncertainty and speed up decisions."
+        subtitle="A clear step-by-step process so you know what happens from first call to final fix."
       >
         <div className="grid gap-4 md:grid-cols-4">
           {service.process.map((step, index) => (
-            <article key={step} className="surface-card p-5">
+            <article key={step} className="surface-card card-interactive p-5" data-reveal data-reveal-delay={index * 120}>
               <p className="text-xs font-semibold uppercase tracking-wider text-mint">Step {index + 1}</p>
               <p className="mt-2 text-sm font-semibold text-ink">{step}</p>
             </article>
@@ -285,19 +285,19 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <Section
         eyebrow="Pricing"
         title="Pricing expectations"
-        subtitle="A major trust builder for high-intent local visitors."
+        subtitle="Typical cost ranges to help you plan before booking."
         className="bg-fog"
       >
         <div className="grid gap-4 md:grid-cols-3">
-          <article className="surface-card p-5">
+          <article className="surface-card card-interactive p-5" data-reveal data-reveal-delay="0">
             <p className="text-xs font-semibold uppercase tracking-wider text-steel">Callout Fee</p>
             <p className="mt-2 font-display text-3xl font-semibold text-ink">{service.pricing.callout}</p>
           </article>
-          <article className="surface-card p-5">
+          <article className="surface-card card-interactive p-5" data-reveal data-reveal-delay="120">
             <p className="text-xs font-semibold uppercase tracking-wider text-steel">Typical Repair Range</p>
             <p className="mt-2 font-display text-3xl font-semibold text-ink">{service.pricing.typicalRange}</p>
           </article>
-          <article className="surface-card p-5">
+          <article className="surface-card card-interactive p-5" data-reveal data-reveal-delay="240">
             <p className="text-xs font-semibold uppercase tracking-wider text-steel">Pricing Policy</p>
             <p className="mt-2 text-sm leading-relaxed text-slate">{service.pricing.note}</p>
           </article>
@@ -312,11 +312,16 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <Section
         eyebrow="Recent Jobs"
         title="Recent jobs in London"
-        subtitle="Realistic local snapshots that improve trust and conversion intent."
+        subtitle="Recent examples of how we solved similar issues across London."
       >
         <div className="grid gap-4 md:grid-cols-2">
-          {recentJobs.map((job) => (
-            <article key={job.title} className="surface-card p-6">
+          {recentJobs.map((job, index) => (
+            <article
+              key={job.title}
+              className="surface-card card-interactive p-6"
+              data-reveal
+              data-reveal-delay={index * 120}
+            >
               <h3 className="text-base font-semibold text-ink">{job.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-steel">{job.detail}</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-mint">
@@ -341,10 +346,10 @@ export function ServicePageTemplate({ service }: { service: Service }) {
       <Section
         eyebrow="Coverage"
         title="Areas we cover"
-        subtitle="Local internal links designed to support ranking depth and conversion routing."
+        subtitle="Find nearby area pages and related services."
       >
         <div className="grid gap-6 md:grid-cols-2">
-          <article className="surface-card p-6">
+          <article className="surface-card card-interactive p-6" data-reveal data-reveal-delay="0">
             <h3 className="font-display text-2xl font-semibold text-ink">London area pages</h3>
             <ul className="mt-4 space-y-2">
               {relatedAreas.slice(0, 6).map((area) => (
@@ -359,7 +364,7 @@ export function ServicePageTemplate({ service }: { service: Service }) {
               ))}
             </ul>
           </article>
-          <article className="surface-card p-6">
+          <article className="surface-card card-interactive p-6" data-reveal data-reveal-delay="120">
             <h3 className="font-display text-2xl font-semibold text-ink">Other plumbing services</h3>
             <ul className="mt-4 space-y-2">
               {internalServiceLinks.map((entry) => (

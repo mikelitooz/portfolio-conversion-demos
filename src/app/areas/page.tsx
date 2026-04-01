@@ -21,8 +21,7 @@ export default function AreasPage() {
             Local Plumbing Coverage Across London Boroughs
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-steel md:text-lg">
-            Our local pages combine practical area context, real recent jobs, and clear booking paths to support both
-            rankings and conversions.
+            Find your borough to see local response details, recent jobs, and the fastest way to book help.
           </p>
         </div>
       </section>
@@ -30,7 +29,7 @@ export default function AreasPage() {
       <Section
         eyebrow="Local Pages"
         title="Find your borough page"
-        subtitle="Area pages are built to be genuinely useful, not thin SEO landing pages."
+        subtitle="Every area page includes local job examples, service coverage, and direct booking options."
       >
         <AreaCards items={areaServicePages} />
       </Section>

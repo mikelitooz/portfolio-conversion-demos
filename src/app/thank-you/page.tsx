@@ -16,7 +16,7 @@ export default function ThankYouPage() {
       subtitle="A member of the Apex team will contact you shortly. If your issue is urgent, call now for priority response."
       className="bg-mesh"
     >
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="card-interactive rounded-2xl border border-slate-200 bg-white p-6" data-reveal>
         <p className="text-sm leading-relaxed text-steel">
           We have your details and will follow up with availability and next steps. For active leaks or no-heat/no-water
           emergencies, please call immediately.
@@ -24,13 +24,13 @@ export default function ThankYouPage() {
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
             href="tel:02012345678"
-            className="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate"
+            className="cta-interactive rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate"
           >
             Call Emergency Line
           </Link>
           <Link
             href="/"
-            className="rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
+            className="cta-interactive rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white"
           >
             Return Home
           </Link>

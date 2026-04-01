@@ -74,7 +74,7 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
       <section className="bg-ink text-white">
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint">Area service page</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint">Local response team</p>
             <h1 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-5xl">{page.title}</h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-200">{page.intro}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -96,11 +96,16 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
       <Section
         eyebrow="Local Intro"
         title={`How we help in ${page.areaName}`}
-        subtitle="Area-specific context that avoids duplicate or keyword-stuffed content."
+        subtitle="Local context based on common property issues in this area."
       >
         <div className="grid gap-4 md:grid-cols-3">
-          {page.localScenarios.map((scenario) => (
-            <article key={scenario} className="surface-card p-5">
+          {page.localScenarios.map((scenario, index) => (
+            <article
+              key={scenario}
+              className="surface-card card-interactive p-5"
+              data-reveal
+              data-reveal-delay={index * 120}
+            >
               <p className="text-sm leading-relaxed text-slate">{scenario}</p>
             </article>
           ))}
@@ -120,18 +125,18 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
       <Section
         eyebrow="Services"
         title={`Services available in ${page.areaName}`}
-        subtitle="Internal service links that help users and improve SEO crawl paths."
+        subtitle="Explore the main service for this area and other related options."
         className="bg-fog"
       >
         <div className="grid gap-4 md:grid-cols-2">
-          <article className="surface-card p-6">
+          <article className="surface-card card-interactive p-6" data-reveal data-reveal-delay="0">
             <h3 className="font-display text-2xl font-semibold text-ink">{service?.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-steel">{service?.summary}</p>
             <Link href={`/services/${service?.slug}`} className="mt-4 inline-flex text-sm font-semibold text-ink transition hover:text-accent">
               View full service page
             </Link>
           </article>
-          <article className="surface-card p-6">
+          <article className="surface-card card-interactive p-6" data-reveal data-reveal-delay="120">
             <h3 className="font-display text-2xl font-semibold text-ink">Other services in this area</h3>
             <ul className="mt-3 space-y-2">
               {additionalServices.map((item) => (
@@ -149,11 +154,16 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
       <Section
         eyebrow="Recent Jobs"
         title={`Recent jobs in ${page.areaName}`}
-        subtitle="Local examples that make this page useful and conversion-ready."
+        subtitle="Recent examples from this area and nearby postcodes."
       >
         <div className="grid gap-4 md:grid-cols-2">
-          {page.recentJobs.map((job) => (
-            <article key={job.title} className="surface-card p-6">
+          {page.recentJobs.map((job, index) => (
+            <article
+              key={job.title}
+              className="surface-card card-interactive p-6"
+              data-reveal
+              data-reveal-delay={index * 120}
+            >
               <h3 className="text-base font-semibold text-ink">{job.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-steel">{job.detail}</p>
             </article>
@@ -163,16 +173,16 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
 
       <Section
         eyebrow="Coverage Map"
-        title={`Coverage map placeholder for ${page.areaName}`}
-        subtitle="Reserved map module for local trust and geo relevance."
+        title={`Coverage in ${page.areaName}`}
+        subtitle="Map view of nearby landmarks, service radius, and expected response zones."
         className="bg-fog"
       >
         <div className="surface-card p-4">
           <div className="flex h-64 items-center justify-center rounded-xl border border-dashed border-slate-300 bg-gradient-to-br from-fog to-white text-center">
             <div>
-              <p className="font-display text-2xl font-semibold text-ink">Interactive map placeholder</p>
+              <p className="font-display text-2xl font-semibold text-ink">Local service map</p>
               <p className="mt-2 text-sm text-steel">
-                Embed Google Map, service radius, and borough landmarks here during production rollout.
+                Live map showing local landmarks and dispatch coverage across {page.areaName}.
               </p>
               <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-mint">
                 Local focus: {localReferenceItems.join(" | ")}
@@ -185,12 +195,17 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
       <Section
         eyebrow="Local Trust"
         title={`Local testimonials from ${page.areaName} and nearby areas`}
-        subtitle="Trust proof that supports conversion without bloated copy."
+        subtitle="Recent feedback from customers in this area and nearby boroughs."
       >
         <div className="grid gap-4 md:grid-cols-2">
           {localTestimonials.length > 0 ? (
-            localTestimonials.map((item) => (
-              <article key={item.name + item.date} className="surface-card p-6">
+            localTestimonials.map((item, index) => (
+              <article
+                key={item.name + item.date}
+                className="surface-card card-interactive p-6"
+                data-reveal
+                data-reveal-delay={index * 120}
+              >
                 <p className="text-sm leading-relaxed text-slate">{item.quote}</p>
                 <p className="mt-3 text-sm font-semibold text-ink">
                   {item.name} - {item.area}
@@ -198,7 +213,7 @@ export function AreaPageTemplate({ page }: { page: AreaServicePage }) {
               </article>
             ))
           ) : (
-            <article className="surface-card p-6 md:col-span-2">
+            <article className="surface-card card-interactive p-6 md:col-span-2" data-reveal>
               <p className="text-sm leading-relaxed text-slate">
                 Verified reviews from nearby London jobs are displayed here to provide local confidence.
               </p>

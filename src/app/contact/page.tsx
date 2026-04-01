@@ -1,8 +1,16 @@
 import { MiniLeadForm } from "@/components/MiniLeadForm";
 import { Section } from "@/components/Section";
 import { TrustBadgeRow } from "@/components/TrustBadgeRow";
-import { company, ctaVariants } from "@/lib/content";
+import { company } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
+
+const commonContactReasons = [
+  "Emergency leak support",
+  "Boiler breakdowns",
+  "Blocked drains",
+  "Leak detection appointments",
+  "Planned maintenance"
+];
 
 export const metadata = buildMetadata({
   title: "Contact Apex Plumbing London",
@@ -24,7 +32,7 @@ export default function ContactPage() {
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-steel md:text-lg">
               For emergencies, calling is quickest. For planned work, send a quote request and preferred time.
             </p>
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
+            <div className="card-interactive mt-6 rounded-2xl border border-slate-200 bg-white p-6" data-reveal>
               <p className="text-xs font-semibold uppercase tracking-wider text-steel">Call Us</p>
               <a href={`tel:${company.phoneRaw}`} className="mt-2 block font-display text-3xl font-semibold text-ink">
                 {company.phoneDisplay}
@@ -39,18 +47,18 @@ export default function ContactPage() {
 
       <Section
         eyebrow="Trust"
-        title="Why customers convert on this page"
-        subtitle="Clear next step, transparent response promise, and visible trust signals."
+        title="Why customers trust this page"
+        subtitle="Clear next steps, quick response promises, and visible credentials."
       >
         <TrustBadgeRow />
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
+        <div className="card-interactive mt-6 rounded-2xl border border-slate-200 bg-white p-6" data-reveal data-reveal-delay="120">
           <p className="text-sm leading-relaxed text-steel">
-            CTA variations tested for service businesses:
+            Common reasons customers contact us:
           </p>
           <ul className="mt-3 flex flex-wrap gap-2">
-            {ctaVariants.map((cta) => (
-              <li key={cta} className="rounded-full bg-fog px-3 py-1.5 text-xs font-semibold text-ink">
-                {cta}
+            {commonContactReasons.map((reason) => (
+              <li key={reason} className="rounded-full bg-fog px-3 py-1.5 text-xs font-semibold text-ink">
+                {reason}
               </li>
             ))}
           </ul>

@@ -38,8 +38,13 @@ export default function PricingPage() {
             { item: "Leak Detection", price: "£150 to £430", note: "Non-invasive tracing preferred first." },
             { item: "Boiler Service", price: "£95 to £140", note: "Annual maintenance and safety checks." },
             { item: "Power Flushing", price: "£380 to £720", note: "Depends on radiator count and system condition." }
-          ].map((entry) => (
-            <article key={entry.item} className="rounded-2xl border border-slate-200 bg-white p-6">
+          ].map((entry, index) => (
+            <article
+              key={entry.item}
+              className="card-interactive rounded-2xl border border-slate-200 bg-white p-6"
+              data-reveal
+              data-reveal-delay={index * 110}
+            >
               <p className="text-xs font-semibold uppercase tracking-wider text-steel">{entry.item}</p>
               <p className="mt-2 font-display text-3xl font-semibold text-ink">{entry.price}</p>
               <p className="mt-2 text-sm leading-relaxed text-steel">{entry.note}</p>
@@ -54,7 +59,7 @@ export default function PricingPage() {
         subtitle="If scope changes, we explain why and confirm revised pricing before continuing."
         className="bg-fog"
       >
-        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+        <div className="card-interactive rounded-2xl border border-slate-200 bg-white p-6" data-reveal>
           <p className="text-sm leading-relaxed text-steel">
             Pricing can vary based on access restrictions, parts availability, and structural constraints in older
             properties. Your engineer will always explain options and get approval first.

@@ -1,55 +1,96 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-const STORAGE_KEY = "apex-exit-intent-dismissed";
+const STORAGE_KEY = "apex-offer-dismissed-session";
+const ANIMATION_MS = 300;
 
 export function ExitIntentPopup() {
+  const [isMounted, setIsMounted] = useState(false);
+  const [isRendered, setIsRendered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const hasTriggeredRef = useRef(false);
+  const closeTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
-    setIsReady(true);
+    setIsMounted(true);
     if (typeof window === "undefined") {
       return;
     }
 
-    const dismissed = window.localStorage.getItem(STORAGE_KEY);
+    const dismissed = window.sessionStorage.getItem(STORAGE_KEY);
     if (dismissed) {
       return;
     }
 
-    const handleMouseLeave = (event: MouseEvent) => {
-      if (window.innerWidth < 1024) {
+    const showPopup = () => {
+      if (hasTriggeredRef.current) {
         return;
       }
-      if (event.clientY <= 8) {
-        setIsVisible(true);
+
+      hasTriggeredRef.current = true;
+      setIsRendered(true);
+      requestAnimationFrame(() => setIsVisible(true));
+    };
+
+    const timerId = window.setTimeout(showPopup, 5000);
+
+    const handleScrollDepth = () => {
+      if (window.scrollY >= window.innerHeight * 0.5) {
+        window.clearTimeout(timerId);
+        showPopup();
       }
     };
 
-    document.addEventListener("mouseout", handleMouseLeave);
+    window.addEventListener("scroll", handleScrollDepth, { passive: true });
 
     return () => {
-      document.removeEventListener("mouseout", handleMouseLeave);
+      window.clearTimeout(timerId);
+      window.removeEventListener("scroll", handleScrollDepth);
+      if (closeTimerRef.current) {
+        window.clearTimeout(closeTimerRef.current);
+      }
     };
   }, []);
 
-  if (!isReady || !isVisible) {
-    return null;
-  }
-
-  const close = () => {
-    setIsVisible(false);
+  const setDismissed = () => {
     if (typeof window !== "undefined") {
-      window.localStorage.setItem(STORAGE_KEY, "true");
+      window.sessionStorage.setItem(STORAGE_KEY, "true");
     }
   };
 
+  const close = () => {
+    setDismissed();
+    setIsVisible(false);
+    if (typeof window !== "undefined") {
+      closeTimerRef.current = window.setTimeout(() => {
+        setIsRendered(false);
+      }, ANIMATION_MS);
+    }
+  };
+
+  const handleSubmit = (_event: FormEvent<HTMLFormElement>) => {
+    setDismissed();
+  };
+
+  if (!isMounted || !isRendered) {
+    return null;
+  }
+
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/55 px-4">
-      <div className="w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+    <div
+      data-popup-overlay
+      className={`fixed inset-0 z-[80] flex items-center justify-center bg-ink/55 px-4 transition-opacity duration-300 ease-out ${
+        isVisible ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
+    >
+      <div
+        data-popup-panel
+        className={`w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition-all duration-300 ease-out md:p-8 ${
+          isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+      >
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint">Limited Offer</p>
@@ -69,7 +110,7 @@ export function ExitIntentPopup() {
         <p className="mt-4 text-sm leading-relaxed text-steel">
           Leave your details and postcode now. We will apply the discount when your first service is booked.
         </p>
-        <form action="/thank-you" className="mt-5 grid gap-3 sm:grid-cols-2">
+        <form action="/thank-you" className="mt-5 grid gap-3 sm:grid-cols-2" onSubmit={handleSubmit}>
           <label className="text-xs font-semibold uppercase tracking-wider text-steel sm:col-span-2">
             Email
             <input

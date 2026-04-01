@@ -49,7 +49,7 @@ export default function FaqPage() {
         <div className="mt-8">
           <Link
             href="/contact"
-            className="inline-flex rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a28]"
+            className="btn-primary cta-interactive"
           >
             Request Quote
           </Link>

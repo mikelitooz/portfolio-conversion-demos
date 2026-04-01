@@ -12,13 +12,13 @@ export default function CookiePolicyPage() {
     <Section
       eyebrow="Legal"
       title="Cookie Policy"
-      subtitle="Prototype cookie policy placeholder. Replace with CMP-integrated policy for production."
+      subtitle="How we use cookies to improve site performance and customer experience."
       className="bg-mesh"
     >
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm leading-relaxed text-steel">
+      <div className="card-interactive rounded-2xl border border-slate-200 bg-white p-6 text-sm leading-relaxed text-steel" data-reveal>
         <p>
-          This prototype may use essential and analytics-style cookies to understand page performance and user journeys.
-          A production site should include a compliant consent management layer.
+          We use essential cookies to keep core website functions working and analytics cookies to understand how visitors
+          use the site so we can improve performance.
         </p>
       </div>
     </Section>

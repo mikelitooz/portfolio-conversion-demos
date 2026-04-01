@@ -4,8 +4,13 @@ import { AreaServicePage } from "@/lib/content";
 export function AreaCards({ items }: { items: AreaServicePage[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {items.map((areaPage) => (
-        <article key={`${areaPage.areaSlug}-${areaPage.serviceRouteSegment}`} className="rounded-2xl border border-slate-200 bg-white p-6">
+      {items.map((areaPage, index) => (
+        <article
+          key={`${areaPage.areaSlug}-${areaPage.serviceRouteSegment}`}
+          className="card-interactive rounded-2xl border border-slate-200 bg-white p-6"
+          data-reveal
+          data-reveal-delay={index * 120}
+        >
           <h3 className="font-display text-2xl font-semibold text-ink">{areaPage.title}</h3>
           <p className="mt-3 text-sm leading-relaxed text-steel">{areaPage.intro}</p>
           <Link

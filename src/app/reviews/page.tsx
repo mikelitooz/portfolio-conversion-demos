@@ -18,14 +18,14 @@ export default function ReviewsPage() {
             Verified Feedback from London Customers
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-steel md:text-lg">
-            Social proof helps reduce booking risk. This module is built for both trust and conversion support.
+            Read recent feedback from homeowners and landlords who booked emergency and boiler services with us.
           </p>
         </div>
       </section>
       <Section
         eyebrow="Social Proof"
         title="Recent customer outcomes"
-        subtitle="Service type, area, and result details included to improve credibility."
+        subtitle="See the service type, borough, and result for each completed job."
       >
         <TestimonialCards />
       </Section>
