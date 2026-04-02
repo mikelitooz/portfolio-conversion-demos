@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CountUp } from "@/components/CountUp";
+import { HeroLeadForm } from "@/components/apex/HeroLeadForm";
 import { company } from "@/lib/content";
 
 const serviceCards = [
@@ -109,52 +110,7 @@ export function ApexHomeStitch({ faqs }: { faqs: FaqItem[] }) {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-slate-300/25 bg-white p-7 text-[#141b2b] shadow-2xl" data-reveal data-reveal-delay="120">
-            <h2 className="font-display text-3xl font-semibold tracking-tight">Need an Engineer Now?</h2>
-            <p className="mt-2 text-sm text-slate-600">We usually respond within 10 minutes during service hours.</p>
-            <form className="mt-6 space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="block">
-                  <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Name</span>
-                  <input type="text" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30" placeholder="John Doe" />
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Phone</span>
-                  <input type="tel" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30" placeholder="07XXX XXXXXX" />
-                </label>
-              </div>
-              <label className="block">
-                <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Postcode</span>
-                <input type="text" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30" placeholder="NW1" />
-              </label>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="block">
-                  <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Problem Type</span>
-                  <select className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30">
-                    <option>Emergency Leak</option>
-                    <option>Boiler Repair</option>
-                    <option>Blocked Drain</option>
-                    <option>No Hot Water</option>
-                  </select>
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Urgency</span>
-                  <select className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30">
-                    <option>Need help today</option>
-                    <option>Within 24 hours</option>
-                    <option>Planned booking</option>
-                  </select>
-                </label>
-              </div>
-              <label className="block">
-                <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Problem Details</span>
-                <textarea className="h-24 w-full resize-none rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30" placeholder="Briefly describe the issue." />
-              </label>
-              <button type="submit" className="cta-interactive w-full rounded-2xl bg-[#ff6b35] px-6 py-3.5 text-base font-semibold text-white transition hover:brightness-95">
-                Get Help in 60 Minutes
-              </button>
-            </form>
-          </div>
+          <HeroLeadForm />
         </div>
       </section>
 
