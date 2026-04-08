@@ -35,6 +35,15 @@ export function HeroLeadForm() {
           </label>
         </div>
         <label className="block">
+          <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Email</span>
+          <input
+            name="email"
+            type="email"
+            className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm outline-none ring-2 ring-transparent transition focus:ring-[#ff9f1c]/30"
+            placeholder="you@example.com"
+          />
+        </label>
+        <label className="block">
           <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">Postcode</span>
           <input
             name="postcode"
